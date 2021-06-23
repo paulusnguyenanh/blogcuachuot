@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+		<form method="POST" action="{% url 'scrape' %}">
+			{% csrf_token %}
+			<button type="submit" class="btn btn-success">Tin Tức Của Dân Trí</button>
+		</form>
+
+
+		<!-- Blog Post -->
+        {% for object in object_list %}
+		<div class="card mb-3">
+            <a href="{{ object.url }}">
+             <img src="{{ object.image }}" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+                <a href="{{ object.url }}">
+                <h5  class="card-title">{{ object.title }}</h5> </a>
+
+            </div>
+        </div>
+        {% endfor %}
+
+
+{% endblock content %}
